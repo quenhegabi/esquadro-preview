@@ -12,7 +12,6 @@
       --noir-raro: #222222;
       --nude-raro: #E5E3D9;
       --areia-rara: #C5C0B6;
-      --azul-raro: #A2D2EB;
       --branco: #FFFFFF;
       --font-mono: 'IBM Plex Mono', monospace;
       --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
@@ -35,14 +34,12 @@
       height: 720px;
       background-color: var(--noir-raro);
       color: var(--branco);
-      padding: 56px 64px;
+      padding: 56px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
       border-radius: 8px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-      overflow: hidden;
     }
 
     /* Header */
@@ -73,91 +70,62 @@
       text-transform: uppercase;
     }
 
-    /* Content Layout */
-    .content-grid {
+    /* 3-Column Layout */
+    .content-grid-3 {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
+      grid-template-columns: 1.1fr 1.1fr 0.8fr;
+      gap: 36px;
       align-items: center;
     }
 
-    /* Title & Alignment Fix */
+    /* Col 1: Title & Description */
     .title-display {
       font-family: var(--font-mono);
-      font-size: 52px;
+      font-size: 48px;
       font-weight: 700;
-      letter-spacing: 0;
       line-height: 1;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       color: var(--branco);
-      display: flex;
-      align-items: baseline;
+      letter-spacing: 0;
     }
 
     .r-virado {
       display: inline-block;
       transform: scaleX(-1);
       color: var(--branco);
-      margin: 0 1px;
     }
 
     .objective-text {
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 17px;
+      font-weight: 400;
       line-height: 1.5;
       color: var(--nude-raro);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
-    .meta-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .pill {
+    .phase-badge {
+      display: inline-block;
       background-color: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 16px;
       border-radius: 999px;
       font-family: var(--font-mono);
       font-size: 12px;
       color: var(--areia-rara);
     }
 
-    /* Right Column - Demo GIF & Features */
-    .right-col {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .demo-gif-container {
-      width: 220px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-
-    .demo-gif-container img {
-      width: 100%;
-      display: block;
-    }
-
+    /* Col 2: All 3 Feature Cards */
     .features-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      width: 100%;
+      gap: 14px;
     }
 
     .feature-card {
       background-color: #2A2A2A;
       border-left: 3px solid var(--vermelho-raro);
-      border-radius: 0 12px 12px 0;
-      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
     }
 
     .feature-title {
@@ -174,6 +142,26 @@
       font-size: 13px;
       color: var(--areia-rara);
       line-height: 1.35;
+    }
+
+    /* Col 3: Demo GIF */
+    .demo-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .demo-gif-container {
+      width: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+    }
+
+    .demo-gif-container img {
+      width: 100%;
+      display: block;
     }
 
     /* Footer */
@@ -194,36 +182,40 @@
     <!-- Header -->
     <div class="slide-header">
       <span class="tag-lr">LÁPIS RAЯO • BRAND INTELLIGENCE</span>
-      <span class="badge-status">LANÇAMENTO: JAN / 2027</span>
+      <span class="badge-status">PREVISÃO: JAN / 2027</span>
     </div>
 
-    <!-- Main Content -->
-    <div class="content-grid">
-      <div class="main-left">
+    <!-- 3-Column Content -->
+    <div class="content-grid-3">
+      <!-- Coluna 1: Título e Descrição -->
+      <div class="col-main">
         <h1 class="title-display">ESQUAD<span class="r-virado">R</span>O</h1>
         <p class="objective-text">
-          Centralização das especificações técnicas no Illustrator, Photoshop, After Effects e Premiere. Criação guiada e automatizada de pranchetas e composições sem checagens manuais.
+          Centralização das especificações técnicas no Illustrator, Photoshop, After Effects e Premiere. Automação de pranchetas e composições com réguas e safe zones oficiais.
         </p>
-        <div class="meta-pills">
-          <span class="pill">Fase: Desenvolvimento & Checagem</span>
-          <span class="pill">Illustrator • Photoshop</span>
-          <span class="pill">After Effects • Premiere</span>
+        <span class="phase-badge">Fase: Desenvolvimento & Checagem</span>
+      </div>
+
+      <!-- Coluna 2: As 3 Funcionalidades -->
+      <div class="features-list">
+        <div class="feature-card">
+          <div class="feature-title">Fluxo Guiado sem Dúvidas</div>
+          <div class="feature-desc">Criação direcionada para quem não tem costume com o formato, sem consultar manuais.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Zero Refação por Corte</div>
+          <div class="feature-desc">Safe Zones e margens aplicadas automaticamente para proteger marcas e CTAs.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Geração em 1 Clique</div>
+          <div class="feature-desc">Pranchetas individuais, múltiplas ou aplicação de guias no arquivo em andamento.</div>
         </div>
       </div>
 
-      <div class="right-col">
+      <!-- Coluna 3: GIF Demonstrativo -->
+      <div class="demo-col">
         <div class="demo-gif-container">
           <img src="demo.gif" alt="Demonstração do ESQUADЯO">
-        </div>
-        <div class="features-list">
-          <div class="feature-card">
-            <div class="feature-title">Fluxo Guiado sem Dúvidas</div>
-            <div class="feature-desc">Criatividade direcionada sem precisar consultar guias para cada formato.</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-title">Zero Refação por Corte</div>
-            <div class="feature-desc">Safe Zones e margens aplicadas automaticamente protegendo a marca.</div>
-          </div>
         </div>
       </div>
     </div>
