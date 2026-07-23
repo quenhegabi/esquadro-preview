@@ -3,366 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESQUADRO — Plugin Lápis Raro (UXP v4.7)</title>
+  <title>ESQUADЯO — Ecossistema de Formatos (Design & Motion)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
     :root {
-      /* Palette Lápis Raro 2026 */
       --noir-raro: #222222;
-      --noir-dark: #161616;
       --vermelho-raro: #E61C00;
       --vermelho-hover: #cc1600;
       --areia-rara: #c5c0b6;
-      --nude-raro: #e5e3d9;
-      --azul-raro: #a2d2eb;
-
       --bg-color: #1a1a1a;
       --card-bg: #242424;
       --input-bg: #141414;
       --border-color: #333333;
       --text-main: #f5f5f5;
       --text-muted: #9e9e9e;
-      
-      --guide-safe: #E61C00; 
-      --guide-crop: #a2d2eb; 
-
+      --azul-raro: #a2d2eb;
       --font-brand-sans: 'Milo', 'IBM Plex Sans', -apple-system, sans-serif;
       --font-brand-mono: 'IBM Plex Mono', monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-brand-sans); -webkit-font-smoothing: antialiased; }
 
-    body { background-color: #0d0d0d; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    body { background-color: #0d0d0d; color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 30px 20px; gap: 20px; }
+
+    header { text-align: center; margin-bottom: 10px; }
+    header h1 { font-family: var(--font-brand-mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    header p { font-size: 11px; color: var(--areia-rara); font-family: var(--font-brand-mono); }
+    .r-virado { display: inline-block; transform: scaleX(-1); font-weight: 700; color: var(--vermelho-raro); }
+
+    .showcase-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+
+    .panel-wrapper { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .panel-subtitle { font-family: var(--font-brand-mono); font-size: 11px; color: var(--areia-rara); text-transform: uppercase; letter-spacing: 1px; }
 
     .panel-container { width: 300px; background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7); overflow: hidden; }
 
     .panel-header { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; background-color: #121212; border-bottom: 1px solid var(--border-color); }
-    .panel-title { font-family: var(--font-brand-mono); font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
-    .r-virado { display: inline-block; transform: scaleX(-1); font-weight: 700; color: inherit; margin: 0 -1px; }
-    .badge-lr { background-color: var(--vermelho-raro); color: #ffffff; font-family: var(--font-brand-mono); font-size: 8px; padding: 2px 5px; border-radius: 3px; font-weight: 700; letter-spacing: 0.5px; }
+    .panel-title { font-family: var(--font-brand-mono); font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--text-main); text-transform: uppercase; }
+    .badge-lr { background-color: var(--vermelho-raro); color: #ffffff; font-family: var(--font-brand-mono); font-size: 8px; padding: 2px 5px; border-radius: 3px; font-weight: 700; }
 
     .panel-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
     .form-group { display: flex; flex-direction: column; gap: 4px; }
     label { font-family: var(--font-brand-mono); font-size: 9px; font-weight: 600; color: var(--areia-rara); text-transform: uppercase; letter-spacing: 0.6px; }
 
-    select { -webkit-appearance: none; -moz-appearance: none; appearance: none; height: 28px; font-family: var(--font-brand-sans); background-color: var(--input-bg); background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'><path fill='%20c5c0b6' d='M0 0l4 5 4-5z'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; color: var(--text-main); border: 1px solid var(--border-color); border-radius: 4px; padding: 0 22px 0 8px; font-size: 11px; outline: none; cursor: pointer; }
-    select:focus { border-color: var(--vermelho-raro); }
-
-    .stepper-container { display: flex; align-items: center; background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 4px; height: 28px; overflow: hidden; width: 100%; }
-    .stepper-btn { width: 28px; height: 100%; background: transparent; border: none; color: var(--text-main); font-size: 13px; font-weight: 600; cursor: pointer; }
-    .stepper-input { flex: 1; background: transparent; border: none; font-family: var(--font-brand-mono); color: var(--text-main); font-size: 11px; font-weight: 600; text-align: center; outline: none; -webkit-appearance: none; -moz-appearance: textfield; appearance: textfield; }
-    .stepper-input::-webkit-inner-spin-button, .stepper-input::-webkit-outer-spin-button { -webkit-appearance: none !important; margin: 0 !important; }
-
+    select { -webkit-appearance: none; height: 28px; font-family: var(--font-brand-sans); background-color: var(--input-bg); background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'><path fill='%20c5c0b6' d='M0 0l4 5 4-5z'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; color: var(--text-main); border: 1px solid var(--border-color); border-radius: 4px; padding: 0 22px 0 8px; font-size: 11px; outline: none; cursor: pointer; }
+    
     .preview-card { background-color: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 5px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .preview-stage { width: 100%; height: 115px; display: flex; justify-content: center; align-items: center; position: relative; }
     .canvas-preview { position: relative; border: 1px solid rgba(255, 255, 255, 0.85); background-color: #121212; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); }
     
     .guide-overlay { position: absolute; border: 1px dashed var(--vermelho-raro); pointer-events: none; box-sizing: border-box; }
-    .guide-no-info { position: absolute; border: 1px dashed var(--vermelho-raro); background-color: rgba(230, 28, 0, 0.15); pointer-events: none; box-sizing: border-box; }
-    .guide-crop-overlay { position: absolute; border: 1px dashed var(--azul-raro); pointer-events: none; box-sizing: border-box; }
-    
     .dim-badge { font-family: var(--font-brand-mono); font-size: 9.5px; font-weight: 600; color: var(--areia-rara); }
     
-    .legend-row { display: flex; gap: 12px; font-size: 9px; color: var(--text-muted); margin-top: 1px; }
-    .legend-item { display: flex; align-items: center; gap: 4px; }
-    .dot { width: 5px; height: 5px; border-radius: 50%; }
-    .dot-safe { background-color: var(--vermelho-raro); }
-    .dot-crop { background-color: var(--azul-raro); }
-    .crop-note { font-size: 8.5px; color: var(--azul-raro); font-weight: 500; }
-
-    .btn-primary { height: 32px; background-color: var(--vermelho-raro); color: #ffffff; border: none; font-family: var(--font-brand-sans); font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
-    .btn-secondary { height: 28px; background-color: transparent; color: var(--areia-rara); border: 1px solid var(--border-color); font-family: var(--font-brand-sans); font-size: 10px; font-weight: 500; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
+    .btn-primary { height: 32px; background-color: var(--vermelho-raro); color: #ffffff; border: none; font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
+    .btn-secondary { height: 28px; background-color: transparent; color: var(--areia-rara); border: 1px solid var(--border-color); font-size: 10px; font-weight: 500; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
     .button-group { display: flex; flex-direction: column; gap: 6px; }
-
-    .toast-msg { background-color: rgba(30, 60, 30, 0.95); border: 1px solid #2e7b32; color: #81c784; font-size: 10px; padding: 6px 8px; border-radius: 4px; text-align: center; display: none; animation: fadeIn 0.15s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
-  <div class="panel-container">
-    <div class="panel-header">
-      <div class="brand-logo"><span class="panel-title">ESQUAD<span class="r-virado">R</span>O</span></div>
-      <span class="badge-lr">LÁPIS RAЯO</span>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label>PLATAFORMA</label>
-        <select id="platformSelect"></select>
-      </div>
-      <div class="form-group">
-        <label>FORMATO DE MÍDIA</label>
-        <select id="formatSelect"></select>
-      </div>
-      <div class="form-group">
-        <label>QUANTIDADE DE PRANCHETAS</label>
-        <div class="stepper-container">
-          <button type="button" class="stepper-btn" id="btnMinus">−</button>
-          <input type="number" id="qtdInput" class="stepper-input" value="1">
-          <button type="button" class="stepper-btn" id="btnPlus">+</button>
+
+  <header>
+    <h1>ESQUAD<span class="r-virado">R</span>O — Ecossistema Lápis Raro</h1>
+    <p>Apresentação de Coordenadoria • Painéis UXP de Design & Motion</p>
+  </header>
+
+  <div class="showcase-grid">
+    
+    <!-- PAINEL 1: DESIGN (Illustrator / Photoshop) -->
+    <div class="panel-wrapper">
+      <span class="panel-subtitle">1. Design (Ilustrator / Photoshop)</span>
+      <div class="panel-container">
+        <div class="panel-header">
+          <div class="panel-title">ESQUAD<span class="r-virado">R</span>O</div>
+          <span class="badge-lr">LÁPIS RAЯO</span>
         </div>
-      </div>
-      <div class="preview-card">
-        <div class="preview-stage">
-          <div id="canvasPreview" class="canvas-preview">
-            <div id="safeOverlay" class="guide-overlay"></div>
-            <div id="noInfoBox" class="guide-no-info"></div>
-            <div id="cropOverlay" class="guide-crop-overlay"></div>
+        <div class="panel-body">
+          <div class="form-group"><label>Plataforma</label><select id="p1Select"></select></div>
+          <div class="form-group"><label>Formato de Mídia</label><select id="f1Select"></select></div>
+          <div class="preview-card">
+            <div class="preview-stage"><div id="c1Preview" class="canvas-preview"><div id="s1Overlay" class="guide-overlay"></div></div></div>
+            <span id="d1Text" class="dim-badge"></span>
           </div>
-        </div>
-        <span id="dimText" class="dim-badge">320 × 320 px</span>
-        <span id="cropNoteText" class="crop-note" style="display:none;">(Crop Feed na 1ª prancheta)</span>
-        <div class="legend-row">
-            <div class="legend-item" id="legendSafeItem"><div class="dot dot-safe"></div><span>Safe Zone</span></div>
-            <div class="legend-item" id="legendCropItem"><div class="dot dot-crop"></div><span>Linhas de Corte</span></div>
+          <button class="btn-primary" style="width:100%">Criar Prancheta</button>
         </div>
       </div>
-      <div class="button-group">
-        <button class="btn-primary" id="btnCreate"><span id="btnActionLabel">Criar Prancheta</span></button>
-        <button class="btn-secondary" id="btnGuidesOnly">Aplicar Apenas Guias</button>
-      </div>
-      <div id="toast" class="toast-msg">✅ Ação realizada com sucesso!</div>
     </div>
+
+    <!-- PAINEL 2: MOTION (After Effects / Premiere) -->
+    <div class="panel-wrapper">
+      <span class="panel-subtitle">2. Motion (After Effects / Premiere)</span>
+      <div class="panel-container">
+        <div class="panel-header">
+          <div class="panel-title">ESQUAD<span class="r-virado">R</span>O <span style="font-size:9px; color:var(--vermelho-raro)">[MOTION]</span></div>
+          <span class="badge-lr">LÁPIS RAЯO</span>
+        </div>
+        <div class="panel-body">
+          <div class="form-group"><label>Categoria / Mídia</label><select id="p2Select"></select></div>
+          <div class="form-group"><label>Especificação / Formato</label><select id="f2Select"></select></div>
+          <div class="preview-card">
+            <div class="preview-stage"><div id="c2Preview" class="canvas-preview"><div id="s2Overlay" class="guide-overlay"></div></div></div>
+            <span id="d2Text" class="dim-badge"></span>
+          </div>
+          <button class="btn-primary" style="width:100%">Gerar Composição</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    const masterPlatforms = {
-      "Facebook": [
-        { id: "fb_avatar", name: "Avatar / Perfil (1:1)", width: 320, height: 320, safe: { top: 50, bottom: 50, left: 50, right: 50 }, circular: true },
-        { id: "fb_square", name: "Post Quadrado (1:1)", width: 1080, height: 1080 },
-        { id: "fb_portrait", name: "Post Retrato (4:5)", width: 1080, height: 1359 },
-        { id: "fb_carousel", name: "Carrossel (1:1)", width: 1200, height: 1200 },
-        { id: "fb_landscape", name: "Post Paisagem (16:9)", width: 1080, height: 566 },
-        { id: "fb_link", name: "Anúncio com Link (1,91:1)", width: 1200, height: 630 },
-        { id: "fb_cover_profile", name: "Capa de Perfil (820×360)", width: 820, height: 360, safe: { top: 24, bottom: 24, left: 90, right: 90 }, cropFeed: { top: 24, bottom: 24, left: 90, right: 90 }, noInfoBox: { width: 180, height: 100, anchor: "bottom-left" } },
-        { id: "fb_cover_group", name: "Capa de Grupo (1640×856)", width: 1640, height: 856 },
-        { id: "fb_cover_event", name: "Capa de Evento (1920×1005)", width: 1920, height: 1005 }
-      ],
-      "Google Ads": [
-        { id: "goog_leader", name: "Leaderboard (728×90)", width: 728, height: 90 },
-        { id: "goog_rect", name: "Medium Rectangle (300×250)", width: 300, height: 250 },
-        { id: "goog_half", name: "Half Page (300×600)", width: 300, height: 600 },
-        { id: "goog_large_rect", name: "Large Rectangle (336×280)", width: 336, height: 280 },
-        { id: "goog_wide_sky", name: "Wide Skyscraper (160×600)", width: 160, height: 600 }
-      ],
-      "iFood": [
-        { id: "ifood_banner", name: "Banner (900×420)", width: 900, height: 420 }
-      ],
+    // Dados Painel 1 (Design)
+    const designData = {
       "Instagram": [
-        { id: "ig_avatar", name: "Avatar / Destaques (1:1)", width: 320, height: 320, safe: { top: 50, bottom: 50, left: 50, right: 50 }, circular: true },
-        { id: "ig_square", name: "Feed Quadrado (1:1)", width: 1080, height: 1080, crop: { lateral: 135.2 } },
-        { id: "ig_portrait_4_5", name: "Feed Retrato (4:5)", width: 1080, height: 1350, crop: { lateral: 34 } },
-        { id: "ig_portrait_3_4", name: "Feed Retrato (3:4)", width: 1080, height: 1440 },
-        { id: "ig_story", name: "Story (9:16)", width: 1080, height: 1920, safe: { top: 110, bottom: 160, left: 100, right: 100 } },
-        { id: "ig_reels", name: "Reels (9:16)", width: 1080, height: 1920, safe: { top: 140, bottom: 300, left: 40, right: 40 }, noInfoBox: { width: 180, height: 750, anchor: "bottom-right" } },
-        { id: "ig_thumb_reels", name: "Thumb Reels (9:16)", width: 1080, height: 1920, cropFeed: { top: 240, bottom: 240 } },
-        { id: "ig_landscape_16_9", name: "Feed Paisagem (16:9)", width: 1080, height: 566, crop: { lateral: 328 } },
-        { id: "ig_landscape_4_3", name: "Feed Paisagem (4:3)", width: 1080, height: 810, crop: { lateral: 236.5 } },
-        { id: "ig_landscape_5_4", name: "Feed Paisagem (5:4)", width: 1080, height: 864, crop: { lateral: 216 } }
+        { id: "ig_square", name: "Feed Quadrado (1:1)", width: 1080, height: 1080 },
+        { id: "ig_reels", name: "Reels / Story (9:16)", width: 1080, height: 1920, safe: { top: 140, bottom: 300, left: 40, right: 40 } }
       ],
-      "LinkedIn": [
-        { id: "lkd_avatar", name: "Perfil / Bio (1:1)", width: 400, height: 400, safe: { top: 50, bottom: 50, left: 50, right: 50 }, circular: true },
-        { id: "lkd_square", name: "Post Quadrado (1:1)", width: 1080, height: 1080 },
-        { id: "lkd_portrait", name: "Post Retrato (4:5)", width: 1080, height: 1350 },
-        { id: "lkd_landscape", name: "Post Paisagem (1,91:1)", width: 1200, height: 627 },
-        { id: "lkd_cover", name: "Capa de Perfil (4:1)", width: 1584, height: 396 },
-        { id: "lkd_video", name: "Vídeo Vertical (9:16)", width: 1080, height: 1920 }
-      ],
-      "TikTok": [
-        { id: "tt_avatar", name: "Avatar / Perfil (1:1)", width: 200, height: 200, safe: { top: 20, bottom: 20, left: 20, right: 20 }, circular: true },
-        { id: "tt_foryou", name: "For You / Vídeo (9:16)", width: 1080, height: 1920, safe: { top: 140, bottom: 300, left: 40, right: 40 } },
-        { id: "tt_thumb", name: "Thumb Capa (4:5)", width: 1080, height: 1920, cropFeed: { top: 285, bottom: 285 } }
-      ],
-      "Uber": [
-        { id: "uber_journey", name: "Journey Ad (16:9)", width: 1280, height: 720 },
-        { id: "uber_dispatch", name: "Dispatch (1:1)", width: 420, height: 420 }
-      ],
-      "WhatsApp": [
-        { id: "wa_avatar", name: "Perfil (1:1)", width: 200, height: 200, safe: { top: 20, bottom: 20, left: 20, right: 20 }, circular: true },
-        { id: "wa_status", name: "Status (9:16)", width: 1080, height: 1920, safe: { top: 120, bottom: 160, left: 100, right: 100 } },
-        { id: "wa_thumb_doc", name: "Thumb Imagem / Doc (2:3)", width: 1200, height: 1800 },
-        { id: "wa_sticker", name: "Sticker / Figurinha (1:1)", width: 512, height: 512, safe: { top: 16, bottom: 16, left: 16, right: 16 } }
-      ],
-      "X (Twitter)": [
-        { id: "tw_avatar", name: "Avatar / Perfil (1:1)", width: 400, height: 400, safe: { top: 20, bottom: 20, left: 20, right: 20 }, circular: true },
-        { id: "tw_square", name: "Post Quadrado (1:1)", width: 1080, height: 1080 },
-        { id: "tw_landscape", name: "Post Retangular (16:9)", width: 1200, height: 675 },
-        { id: "tw_card", name: "Card / Link (2:1)", width: 800, height: 418 },
-        { id: "tw_cover", name: "Capa do Perfil (3:1)", width: 1500, height: 500, safe: { top: 140, bottom: 140, left: 282.5, right: 282.5 }, cropFeed: { top: 140, bottom: 140, left: 282.5, right: 282.5 } }
-      ],
-      "YouTube": [
-        { id: "yt_avatar", name: "Avatar / Canal (1:1)", width: 800, height: 800, safe: { top: 20, bottom: 20, left: 20, right: 20 }, circular: true },
-        { id: "yt_thumb", name: "Thumbnail (16:9)", width: 1280, height: 720 },
-        { id: "yt_shorts", name: "Shorts (9:16)", width: 1080, height: 1920, safe: { top: 120, bottom: 160, left: 60, right: 60 } },
-        { id: "yt_cover", name: "Capa do Canal (16:9)", width: 2560, height: 1440, safe: { top: 508.5, bottom: 508.5, left: 507, right: 507 }, cropFeed: { top: 508.5, bottom: 508.5 } }
+      "Facebook": [
+        { id: "fb_cover", name: "Capa de Perfil", width: 820, height: 360, safe: { top: 24, bottom: 24, left: 90, right: 90 } }
       ]
     };
 
-    const platformSelect = document.getElementById('platformSelect');
-    const formatSelect = document.getElementById('formatSelect');
-    const qtdInput = document.getElementById('qtdInput');
-    const btnMinus = document.getElementById('btnMinus');
-    const btnPlus = document.getElementById('btnPlus');
-    const btnActionLabel = document.getElementById('btnActionLabel');
-    const canvasPreview = document.getElementById('canvasPreview');
-    const safeOverlay = document.getElementById('safeOverlay');
-    const noInfoBox = document.getElementById('noInfoBox');
-    const cropOverlay = document.getElementById('cropOverlay');
-    const dimText = document.getElementById('dimText');
-    const cropNoteText = document.getElementById('cropNoteText');
-    const legendSafeItem = document.getElementById('legendSafeItem');
-    const legendCropItem = document.getElementById('legendCropItem');
+    // Dados Painel 2 (Motion - AE/PR)
+    const motionData = {
+      "Streaming / TV (Spot)": [
+        { id: "spot_30", name: "Spot Comercial 30s (FHD)", width: 1920, height: 1080, safe: { top: 100, bottom: 150, left: 100, right: 100 } },
+        { id: "bumper_6", name: "Bumper Ad 6s (FHD)", width: 1920, height: 1080, safe: { top: 150, bottom: 150, left: 200, right: 200 } }
+      ],
+      "OOH Digital / Telões": [
+        { id: "ooh_led", name: "Painel LED Urbano (16:9)", width: 1280, height: 720, safe: { top: 80, bottom: 80, left: 80, right: 80 } },
+        { id: "ooh_vert", name: "Torre Vertical Customizada", width: 1080, height: 1920, safe: { top: 200, bottom: 200, left: 60, right: 60 } }
+      ]
+    };
 
-    function populatePlatforms() {
-      platformSelect.innerHTML = '';
-      const keys = Object.keys(masterPlatforms).sort();
-      keys.forEach(p => {
-        const opt = document.createElement('option');
-        opt.value = p;
-        opt.textContent = p;
-        if (p === "Instagram") opt.selected = true;
-        platformSelect.appendChild(opt);
-      });
-      populateFormats();
+    // Setup Painel 1
+    const p1 = document.getElementById('p1Select');
+    const f1 = document.getElementById('f1Select');
+    const c1 = document.getElementById('c1Preview');
+    const s1 = document.getElementById('s1Overlay');
+    const d1 = document.getElementById('d1Text');
+
+    Object.keys(designData).forEach(k => p1.add(new Option(k, k)));
+    function updateP1() {
+      f1.innerHTML = '';
+      designData[p1.value].forEach(f => f1.add(new Option(f.name, f.id)));
+      render1();
     }
-
-    function populateFormats() {
-      formatSelect.innerHTML = '';
-      const formats = masterPlatforms[platformSelect.value] || [];
-      formats.forEach(f => {
-        const opt = document.createElement('option');
-        opt.value = f.id;
-        opt.textContent = f.name;
-        formatSelect.appendChild(opt);
-      });
-      updatePreview();
+    function render1() {
+      const fmt = designData[p1.value].find(x => x.id === f1.value);
+      if(!fmt) return;
+      const scale = 80 / fmt.height; // max height 80px
+      const w = fmt.width * scale;
+      const h = fmt.height * scale;
+      c1.style.width = w + 'px';
+      c1.style.height = h + 'px';
+      d1.textContent = `${fmt.width} × ${fmt.height} px`;
+      if(fmt.safe) {
+        s1.style.display = 'block';
+        s1.style.top = (fmt.safe.top * scale) + 'px';
+        s1.style.bottom = (fmt.safe.bottom * scale) + 'px';
+        s1.style.left = (fmt.safe.left * scale) + 'px';
+        s1.style.right = (fmt.safe.right * scale) + 'px';
+      } else { s1.style.display = 'none'; }
     }
+    p1.onchange = updateP1; f1.onchange = render1;
+    updateP1();
 
-    function updatePreview() {
-      const formats = masterPlatforms[platformSelect.value] || [];
-      const fmt = formats.find(f => f.id === formatSelect.value) || formats[0];
-      if (!fmt) return;
+    // Setup Painel 2
+    const p2 = document.getElementById('p2Select');
+    const f2 = document.getElementById('f2Select');
+    const c2 = document.getElementById('c2Preview');
+    const s2 = document.getElementById('s2Overlay');
+    const d2 = document.getElementById('d2Text');
 
-      const q = parseInt(qtdInput.value) || 1;
-      
-      const maxW = 84;
-      const maxH = 100;
-      const ratio = fmt.width / fmt.height;
-
-      let renderW, renderH;
-      if (ratio > maxW / maxH) {
-        renderW = maxW;
-        renderH = maxW / ratio;
-      } else {
-        renderH = maxH;
-        renderW = maxH * ratio;
-      }
-
-      canvasPreview.style.width = renderW + 'px';
-      canvasPreview.style.height = renderH + 'px';
-      canvasPreview.style.borderRadius = fmt.circular ? '50%' : '2px';
-      dimText.textContent = `${fmt.width} × ${fmt.height} px`;
-
-      const scaleX = renderW / fmt.width;
-      const scaleY = renderH / fmt.height;
-
-      // 1. Safe Zone (Cálculo Explícito em Pixels)
-      if (fmt.safe) {
-        legendSafeItem.style.display = 'flex';
-        safeOverlay.style.display = 'block';
-        safeOverlay.style.left = (fmt.safe.left * scaleX) + 'px';
-        safeOverlay.style.top = (fmt.safe.top * scaleY) + 'px';
-        safeOverlay.style.width = ((fmt.width - fmt.safe.left - fmt.safe.right) * scaleX) + 'px';
-        safeOverlay.style.height = ((fmt.height - fmt.safe.top - fmt.safe.bottom) * scaleY) + 'px';
-        safeOverlay.style.borderRadius = fmt.circular ? '50%' : '0';
-      } else {
-        legendSafeItem.style.display = 'none';
-        safeOverlay.style.display = 'none';
-      }
-
-      // 2. Box de sem informação (ex: Reels bottom-right / Facebook Capa)
-      if (fmt.noInfoBox) {
-        noInfoBox.style.display = 'block';
-        const boxW = fmt.noInfoBox.width * scaleX;
-        const boxH = fmt.noInfoBox.height * scaleY;
-        const safeB = (fmt.safe ? fmt.safe.bottom : 0) * scaleY;
-        const safeL = (fmt.safe ? fmt.safe.left : 0) * scaleX;
-        const safeR = (fmt.safe ? fmt.safe.right : 0) * scaleX;
-
-        noInfoBox.style.width = boxW + 'px';
-        noInfoBox.style.height = boxH + 'px';
-
-        if (fmt.noInfoBox.anchor === "bottom-left") {
-          noInfoBox.style.bottom = safeB + 'px';
-          noInfoBox.style.left = safeL + 'px';
-          noInfoBox.style.right = 'auto';
-        } else {
-          noInfoBox.style.bottom = safeB + 'px';
-          noInfoBox.style.right = safeR + 'px';
-          noInfoBox.style.left = 'auto';
-        }
-      } else {
-        noInfoBox.style.display = 'none';
-      }
-
-      // 3. Linhas de Corte (Calculadas explicitamente com x/y/w/h)
-      const hasCrop = fmt.cropFeed || fmt.crop;
-      if (hasCrop) {
-        legendCropItem.style.display = 'flex';
-        cropOverlay.style.display = 'block';
-
-        if (fmt.cropFeed) {
-          const cL = (fmt.cropFeed.left || 0) * scaleX;
-          const cR = (fmt.cropFeed.right || 0) * scaleX;
-          const cT = (fmt.cropFeed.top || 0) * scaleY;
-          const cB = (fmt.cropFeed.bottom || 0) * scaleY;
-
-          cropOverlay.style.left = cL + 'px';
-          cropOverlay.style.top = cT + 'px';
-          cropOverlay.style.width = (renderW - cL - cR) + 'px';
-          cropOverlay.style.height = (renderH - cT - cB) + 'px';
-        } else if (fmt.crop) {
-          const cLat = (fmt.crop.lateral || 0) * scaleX;
-
-          cropOverlay.style.left = cLat + 'px';
-          cropOverlay.style.top = '0px';
-          cropOverlay.style.width = (renderW - (cLat * 2)) + 'px';
-          cropOverlay.style.height = renderH + 'px';
-        }
-
-        cropNoteText.style.display = q > 1 ? 'block' : 'none';
-      } else {
-        legendCropItem.style.display = 'none';
-        cropOverlay.style.display = 'none';
-        cropNoteText.style.display = 'none';
-      }
+    Object.keys(motionData).forEach(k => p2.add(new Option(k, k)));
+    function updateP2() {
+      f2.innerHTML = '';
+      motionData[p2.value].forEach(f => f2.add(new Option(f.name, f.id)));
+      render2();
     }
-
-    function updateQtdLabel() {
-      let q = parseInt(qtdInput.value);
-      if (isNaN(q) || q < 1) q = 1;
-      qtdInput.value = q;
-      btnActionLabel.textContent = q > 1 ? "Criar Pranchetas" : "Criar Prancheta";
-      updatePreview();
+    function render2() {
+      const fmt = motionData[p2.value].find(x => x.id === f2.value);
+      if(!fmt) return;
+      const scale = 80 / fmt.height;
+      const w = fmt.width * scale;
+      const h = fmt.height * scale;
+      c2.style.width = w + 'px';
+      c2.style.height = h + 'px';
+      d2.textContent = `${fmt.width} × ${fmt.height} px (Motion)`;
+      if(fmt.safe) {
+        s2.style.display = 'block';
+        s2.style.top = (fmt.safe.top * scale) + 'px';
+        s2.style.bottom = (fmt.safe.bottom * scale) + 'px';
+        s2.style.left = (fmt.safe.left * scale) + 'px';
+        s2.style.right = (fmt.safe.right * scale) + 'px';
+      } else { s2.style.display = 'none'; }
     }
-
-    btnMinus.addEventListener('click', () => {
-      let q = parseInt(qtdInput.value) || 1;
-      if (q > 1) { qtdInput.value = q - 1; updateQtdLabel(); }
-    });
-
-    btnPlus.addEventListener('click', () => {
-      let q = parseInt(qtdInput.value) || 1;
-      if (q < 20) { qtdInput.value = q + 1; updateQtdLabel(); }
-    });
-
-    platformSelect.addEventListener('change', populateFormats);
-    formatSelect.addEventListener('change', updatePreview);
-    qtdInput.addEventListener('input', updateQtdLabel);
-
-    // Boot
-    populatePlatforms();
-
+    p2.onchange = updateP2; f2.onchange = render2;
+    updateP2();
   </script>
 </body>
 </html>
