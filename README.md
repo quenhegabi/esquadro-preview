@@ -1,40 +1,33 @@
-# ESQUADЯO — LÁPIS RAЯO
-**Brand Intelligence aplicada ao fluxo criativo.**
+# ESQUADЯO — Guia Técnico de Formatos
+
+O **ESQUADЯO** é o plugin oficial da Lápis Raro para Adobe Illustrator e Photoshop. Ele centraliza as especificações técnicas de formatos e guias de segurança, otimizando o fluxo de produção de conteúdo digital.
 
 ---
 
-## O desafio: virar o R
-Criatividade com método exige mais do que talento — exige precisão. Na Lápis Raro, nós não apenas seguimos padrões, nós os questionamos, ressignificamos e entregamos com inteligência estratégica.
+## Funcionalidades
 
-No dia a dia do design, as especificações técnicas de formatos mudam constantemente e o ruído operacional muitas vezes consome o tempo que deveríamos dedicar ao que realmente importa: **o pensamento estratégico.**
+- **Criação de Artboards:** Geração automática de pranchetas com dimensões exatas de acordo com o formato selecionado.
+- **Aplicação de Guias:** Desenho automático de *Safe Zones* e linhas de corte (*Crop Feed*) baseadas nas diretrizes atuais de cada rede.
+- **Aplicação Direta:** Função de aplicar guias diretamente na prancheta ativa, ideal para ajustes rápidos sem criar novos documentos.
+- **Manutenção Simplificada:** Todo o banco de formatos e margens é centralizado em um arquivo de configuração (`formats-master.json`). Caso as plataformas alterem suas especificações, a atualização é feita diretamente no código-fonte.
 
-O **ESQUADЯO** nasce para remover esse ruído. É a nossa ferramenta de inteligência visual para padronizar o que é técnico, liberar espaço para o que é raro.
-
----
-
-## O que o ESQUADЯO resolve?
-
-* **Fricção zero:** Adeus aos arquivos PDF de normas que ninguém abre. O plugin traz as especificações corretas (Safe Zones, Crop Feed, margens) direto para dentro do Illustrator e Photoshop.
-* **Precisão cirúrgica:** Regras de segurança validadas e auditadas. Menos retrabalho por cortes indevidos em posts ou vídeos.
-* **Escalabilidade criativa:** Crie 1 ou 20 pranchetas com um clique, aplicando guias de corte automaticamente apenas onde necessário.
-* **Padronização:** Garante que todos os designers da agência entreguem com o mesmo rigor técnico, independentemente da rede social.
+## Plataformas suportadas
+- Instagram, Facebook, LinkedIn, TikTok, WhatsApp, X (Twitter) e YouTube.
 
 ---
 
-## Recursos principais
+## Instalação
 
-- **Cobertura total:** Facebook, Instagram, LinkedIn, TikTok, WhatsApp, X (Twitter) e YouTube.
-- **Inteligência de Formatos:** De Avatars a Reels e Thumbnails, com safe zones e guias de corte integradas.
-- **Identidade Lápis Raro:** Painel desenhado com o nosso sistema visual: *Noir Raro*, *Vermelho Raro*, tipografia *IBM Plex* e o nosso compromisso com a clareza técnica.
-- **Fluxo nativo:** Disponível como painel (CEP) no Illustrator e painel (UXP) no Photoshop.
+### Adobe Photoshop (UXP)
+1. Abra o **UXP Developer Tool**.
+2. Clique em **"Add Plugin"** e selecione o `manifest.json`.
+3. Clique em **"Load"** para utilizar o painel no Photoshop.
 
----
-
-## Brand Intelligence • 2026
-
-*Não é apenas estética. É comportamento. É atitude.*
-
-Este plugin é um desdobramento da nossa busca constante por reinventar processos. Porque se a fórmula é fácil, a nossa missão é virar o ângulo e enxergar a oportunidade de fazer melhor.
+### Adobe Illustrator
+1. Vá em **File > Scripts > Browse...**
+2. Selecione o arquivo `ESQUADRO.jsx` localizado na pasta de scripts do Illustrator.
 
 ---
-*Desenvolvido pela Lápis Raro para a equipe de design.*
+
+*Brand Intelligence • 2026*
+*Ferramenta de uso interno da Lápis Raro.*
