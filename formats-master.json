@@ -1,5 +1,5 @@
 {
-  "version": "3.1.0",
+  "version": "4.0.0",
   "agency": "Lápis Raro",
   "platforms": {
     "facebook": {
@@ -16,10 +16,9 @@
           "name": "Capa de Perfil (820×360)", 
           "width": 820, 
           "height": 360, 
-          "safe": { "top": 24, "bottom": 24, "left": 90, "right": 90 }, 
+          "safe": { "top": 24, "bottom": 24, "left": 90, "right": 90 },
           "cropFeed": { "top": 24, "bottom": 24, "left": 90, "right": 90 },
-          "noInfoBox": { "width": 180, "height": 100, "anchor": "bottom-left" },
-          "note": "Safe Zone Universal (Mobile + Desktop)" 
+          "noInfoBox": { "width": 180, "height": 100, "anchor": "bottom-left" }
         },
         { "id": "fb_cover_group", "name": "Capa de Grupo (1640×856)", "width": 1640, "height": 856 },
         { "id": "fb_cover_event", "name": "Capa de Evento (1920×1005)", "width": 1920, "height": 1005 }
@@ -75,14 +74,7 @@
         { "id": "tw_square", "name": "Post Quadrado (1:1)", "width": 1080, "height": 1080 },
         { "id": "tw_landscape", "name": "Post Retangular (16:9)", "width": 1200, "height": 675 },
         { "id": "tw_card", "name": "Card / Link (2:1)", "width": 800, "height": 418 },
-        { 
-          "id": "tw_cover", 
-          "name": "Capa do Perfil (3:1)", 
-          "width": 1500, 
-          "height": 500, 
-          "safe": { "top": 140, "bottom": 140, "left": 282.5, "right": 282.5 },
-          "cropFeed": { "top": 140, "bottom": 140, "left": 282.5, "right": 282.5 }
-        }
+        { "id": "tw_cover", "name": "Capa do Perfil (3:1)", "width": 1500, "height": 500, "safe": { "top": 140, "bottom": 140, "left": 282.5, "right": 282.5 }, "cropFeed": { "top": 140, "bottom": 140, "left": 282.5, "right": 282.5 } }
       ]
     },
     "youtube": {
@@ -91,14 +83,20 @@
         { "id": "yt_avatar", "name": "Avatar / Canal (1:1)", "width": 800, "height": 800, "safe": { "top": 20, "bottom": 20, "left": 20, "right": 20 }, "circular": true },
         { "id": "yt_thumb", "name": "Thumbnail de Vídeo (16:9)", "width": 1280, "height": 720 },
         { "id": "yt_shorts", "name": "Shorts (9:16)", "width": 1080, "height": 1920, "safe": { "top": 120, "bottom": 160, "left": 60, "right": 60 } },
-        { 
-          "id": "yt_cover", 
-          "name": "Capa do Canal (16:9)", 
-          "width": 2560, 
-          "height": 1440, 
-          "safe": { "top": 508.5, "bottom": 508.5, "left": 507, "right": 507 },
-          "cropFeed": { "top": 508.5, "bottom": 508.5 }
-        }
+        { "id": "yt_cover", "name": "Capa do Canal (16:9)", "width": 2560, "height": 1440, "safe": { "top": 508.5, "bottom": 508.5, "left": 507, "right": 507 }, "cropFeed": { "top": 508.5, "bottom": 508.5 } }
+      ]
+    },
+    "uber": {
+      "name": "Uber",
+      "formats": [
+        { "id": "uber_journey_ad", "name": "Journey Ad (16:9)", "width": 1280, "height": 720 },
+        { "id": "uber_dispatch", "name": "Dispatch/En-Route (1:1)", "width": 420, "height": 420 }
+      ]
+    },
+    "ifood": {
+      "name": "iFood",
+      "formats": [
+        { "id": "ifood_banner", "name": "Banner (900×420)", "width": 900, "height": 420 }
       ]
     }
   }
