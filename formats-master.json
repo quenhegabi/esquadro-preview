@@ -1,0 +1,105 @@
+{
+  "version": "3.1.0",
+  "agency": "Lápis Raro",
+  "platforms": {
+    "facebook": {
+      "name": "Facebook",
+      "formats": [
+        { "id": "fb_avatar", "name": "Avatar / Perfil (1:1)", "width": 320, "height": 320, "safe": { "top": 50, "bottom": 50, "left": 50, "right": 50 }, "circular": true },
+        { "id": "fb_square", "name": "Post Quadrado (1:1)", "width": 1080, "height": 1080 },
+        { "id": "fb_portrait", "name": "Post Retrato (4:5)", "width": 1080, "height": 1359 },
+        { "id": "fb_carousel", "name": "Carrossel (1:1)", "width": 1200, "height": 1200 },
+        { "id": "fb_landscape", "name": "Post Paisagem (16:9)", "width": 1080, "height": 566 },
+        { "id": "fb_link", "name": "Anúncio com Link (1,91:1)", "width": 1200, "height": 630 },
+        { 
+          "id": "fb_cover_profile", 
+          "name": "Capa de Perfil (820×360)", 
+          "width": 820, 
+          "height": 360, 
+          "safe": { "top": 24, "bottom": 24, "left": 90, "right": 90 }, 
+          "cropFeed": { "top": 24, "bottom": 24, "left": 90, "right": 90 },
+          "noInfoBox": { "width": 180, "height": 100, "anchor": "bottom-left" },
+          "note": "Safe Zone Universal (Mobile + Desktop)" 
+        },
+        { "id": "fb_cover_group", "name": "Capa de Grupo (1640×856)", "width": 1640, "height": 856 },
+        { "id": "fb_cover_event", "name": "Capa de Evento (1920×1005)", "width": 1920, "height": 1005 }
+      ]
+    },
+    "instagram": {
+      "name": "Instagram",
+      "formats": [
+        { "id": "ig_avatar", "name": "Avatar / Destaques (1:1)", "width": 320, "height": 320, "safe": { "top": 50, "bottom": 50, "left": 50, "right": 50 }, "circular": true },
+        { "id": "ig_square", "name": "Feed Quadrado (1:1)", "width": 1080, "height": 1080, "crop": { "lateral": 135.2 } },
+        { "id": "ig_portrait_4_5", "name": "Feed Retrato (4:5)", "width": 1080, "height": 1350, "crop": { "lateral": 34 } },
+        { "id": "ig_portrait_3_4", "name": "Feed Retrato (3:4)", "width": 1080, "height": 1440 },
+        { "id": "ig_story", "name": "Story (9:16)", "width": 1080, "height": 1920, "safe": { "top": 110, "bottom": 160, "left": 100, "right": 100 } },
+        { "id": "ig_reels", "name": "Reels (9:16)", "width": 1080, "height": 1920, "safe": { "top": 140, "bottom": 300, "left": 40, "right": 40 }, "noInfoBox": { "width": 180, "height": 750, "anchor": "bottom-right" } },
+        { "id": "ig_thumb_reels", "name": "Thumb Reels (9:16)", "width": 1080, "height": 1920, "cropFeed": { "top": 240, "bottom": 240 } },
+        { "id": "ig_landscape_16_9", "name": "Feed Paisagem (16:9)", "width": 1080, "height": 566, "crop": { "lateral": 328 } },
+        { "id": "ig_landscape_4_3", "name": "Feed Paisagem (4:3)", "width": 1080, "height": 810, "crop": { "lateral": 236.5 } },
+        { "id": "ig_landscape_5_4", "name": "Feed Paisagem (5:4)", "width": 1080, "height": 864, "crop": { "lateral": 216 } }
+      ]
+    },
+    "linkedin": {
+      "name": "LinkedIn",
+      "formats": [
+        { "id": "lkd_avatar", "name": "Perfil / Bio (1:1)", "width": 400, "height": 400, "safe": { "top": 50, "bottom": 50, "left": 50, "right": 50 }, "circular": true },
+        { "id": "lkd_square", "name": "Post Quadrado (1:1)", "width": 1080, "height": 1080 },
+        { "id": "lkd_portrait", "name": "Post Retrato (4:5)", "width": 1080, "height": 1350 },
+        { "id": "lkd_landscape", "name": "Post Paisagem (1,91:1)", "width": 1200, "height": 627 },
+        { "id": "lkd_cover", "name": "Capa de Perfil (4:1)", "width": 1584, "height": 396 },
+        { "id": "lkd_video", "name": "Vídeo Vertical (9:16)", "width": 1080, "height": 1920 }
+      ]
+    },
+    "tiktok": {
+      "name": "TikTok",
+      "formats": [
+        { "id": "tt_avatar", "name": "Avatar / Perfil (1:1)", "width": 200, "height": 200, "safe": { "top": 20, "bottom": 20, "left": 20, "right": 20 }, "circular": true },
+        { "id": "tt_foryou", "name": "For You / Vídeo (9:16)", "width": 1080, "height": 1920, "safe": { "top": 140, "bottom": 300, "left": 40, "right": 40 } },
+        { "id": "tt_thumb", "name": "Thumb Capa (4:5)", "width": 1080, "height": 1920, "cropFeed": { "top": 285, "bottom": 285 } }
+      ]
+    },
+    "whatsapp": {
+      "name": "WhatsApp",
+      "formats": [
+        { "id": "wa_avatar", "name": "Perfil (1:1)", "width": 200, "height": 200, "safe": { "top": 20, "bottom": 20, "left": 20, "right": 20 }, "circular": true },
+        { "id": "wa_status", "name": "Status (9:16)", "width": 1080, "height": 1920, "safe": { "top": 120, "bottom": 160, "left": 100, "right": 100 } },
+        { "id": "wa_thumb_doc", "name": "Thumb Imagem / Doc (2:3)", "width": 1200, "height": 1800 },
+        { "id": "wa_sticker", "name": "Sticker / Figurinha (1:1)", "width": 512, "height": 512, "safe": { "top": 16, "bottom": 16, "left": 16, "right": 16 } }
+      ]
+    },
+    "twitter": {
+      "name": "X (Twitter)",
+      "formats": [
+        { "id": "tw_avatar", "name": "Avatar / Perfil (1:1)", "width": 400, "height": 400, "safe": { "top": 20, "bottom": 20, "left": 20, "right": 20 }, "circular": true },
+        { "id": "tw_square", "name": "Post Quadrado (1:1)", "width": 1080, "height": 1080 },
+        { "id": "tw_landscape", "name": "Post Retangular (16:9)", "width": 1200, "height": 675 },
+        { "id": "tw_card", "name": "Card / Link (2:1)", "width": 800, "height": 418 },
+        { 
+          "id": "tw_cover", 
+          "name": "Capa do Perfil (3:1)", 
+          "width": 1500, 
+          "height": 500, 
+          "safe": { "top": 140, "bottom": 140, "left": 282.5, "right": 282.5 },
+          "cropFeed": { "top": 140, "bottom": 140, "left": 282.5, "right": 282.5 }
+        }
+      ]
+    },
+    "youtube": {
+      "name": "YouTube",
+      "formats": [
+        { "id": "yt_avatar", "name": "Avatar / Canal (1:1)", "width": 800, "height": 800, "safe": { "top": 20, "bottom": 20, "left": 20, "right": 20 }, "circular": true },
+        { "id": "yt_thumb", "name": "Thumbnail de Vídeo (16:9)", "width": 1280, "height": 720 },
+        { "id": "yt_shorts", "name": "Shorts (9:16)", "width": 1080, "height": 1920, "safe": { "top": 120, "bottom": 160, "left": 60, "right": 60 } },
+        { 
+          "id": "yt_cover", 
+          "name": "Capa do Canal (16:9)", 
+          "width": 2560, 
+          "height": 1440, 
+          "safe": { "top": 508.5, "bottom": 508.5, "left": 507, "right": 507 },
+          "cropFeed": { "top": 508.5, "bottom": 508.5 }
+        }
+      ]
+    }
+  }
+}

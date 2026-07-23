@@ -1,0 +1,142 @@
+{
+  "platform": "Instagram",
+  "version": "1.4.0",
+  "formats": [
+    {
+      "id": "avatar_highlights",
+      "name": "Avatar / Destaques (1:1)",
+      "width": 320,
+      "height": 320,
+      "aspect_ratio": "1:1",
+      "crop_guides": null,
+      "safe_zone": {
+        "top": 50,
+        "bottom": 50,
+        "left": 50,
+        "right": 50,
+        "is_circular": true
+      }
+    },
+    {
+      "id": "feed_landscape_16_9",
+      "name": "Feed Paisagem (16:9)",
+      "width": 1080,
+      "height": 566,
+      "aspect_ratio": "16:9",
+      "crop_guides": {
+        "lateral_margin": 328,
+        "thumb_width": 424,
+        "thumb_height": 566
+      },
+      "safe_zone": null
+    },
+    {
+      "id": "feed_landscape_4_3",
+      "name": "Feed Paisagem (4:3)",
+      "width": 1080,
+      "height": 810,
+      "aspect_ratio": "4:3",
+      "crop_guides": {
+        "lateral_margin": 236.5,
+        "thumb_width": 607,
+        "thumb_height": 810
+      },
+      "safe_zone": null
+    },
+    {
+      "id": "feed_landscape_5_4",
+      "name": "Feed Paisagem (5:4)",
+      "width": 1080,
+      "height": 864,
+      "aspect_ratio": "5:4",
+      "crop_guides": {
+        "lateral_margin": 216,
+        "thumb_width": 648,
+        "thumb_height": 864
+      },
+      "safe_zone": null
+    },
+    {
+      "id": "feed_square",
+      "name": "Feed Quadrado (1:1)",
+      "width": 1080,
+      "height": 1080,
+      "aspect_ratio": "1:1",
+      "crop_guides": {
+        "lateral_margin": 135.2,
+        "thumb_width": 809.6,
+        "thumb_height": 1080
+      },
+      "safe_zone": null
+    },
+    {
+      "id": "feed_portrait_4_5",
+      "name": "Feed Retrato (4:5)",
+      "width": 1080,
+      "height": 1350,
+      "aspect_ratio": "4:5",
+      "crop_guides": {
+        "lateral_margin": 34,
+        "thumb_width": 1012,
+        "thumb_height": 1350
+      },
+      "safe_zone": null
+    },
+    {
+      "id": "feed_portrait_3_4",
+      "name": "Feed Retrato (3:4)",
+      "width": 1080,
+      "height": 1440,
+      "aspect_ratio": "3:4",
+      "crop_guides": null,
+      "safe_zone": null
+    },
+    {
+      "id": "story_9_16",
+      "name": "Story (9:16)",
+      "width": 1080,
+      "height": 1920,
+      "aspect_ratio": "9:16",
+      "crop_guides": null,
+      "safe_zone": {
+        "top": 110,
+        "bottom": 160,
+        "left": 100,
+        "right": 100
+      }
+    },
+    {
+      "id": "reels_9_16",
+      "name": "Reels (9:16)",
+      "width": 1080,
+      "height": 1920,
+      "aspect_ratio": "9:16",
+      "crop_guides": null,
+      "safe_zone": {
+        "top": 140,
+        "bottom": 300,
+        "left": 40,
+        "right": 40,
+        "no_info_box": {
+          "width": 180,
+          "height": 750,
+          "anchor": "bottom-right"
+        }
+      }
+    },
+    {
+      "id": "thumb_reels_9_16",
+      "name": "Thumb Reels (9:16)",
+      "width": 1080,
+      "height": 1920,
+      "aspect_ratio": "9:16",
+      "crop_guides": {
+        "feed_crop_width": 1080,
+        "feed_crop_height": 1440,
+        "top_margin": 240,
+        "bottom_margin": 240
+      },
+      "safe_zone": null
+    }
+  ]
+}
