@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "4.1.0",
   "agency": "Lápis Raro",
   "platforms": {
     "facebook": {
@@ -22,6 +22,16 @@
         },
         { "id": "fb_cover_group", "name": "Capa de Grupo (1640×856)", "width": 1640, "height": 856 },
         { "id": "fb_cover_event", "name": "Capa de Evento (1920×1005)", "width": 1920, "height": 1005 }
+      ]
+    },
+    "google": {
+      "name": "Google Ads",
+      "formats": [
+        { "id": "goog_banner_leaderboard", "name": "Leaderboard (728×90)", "width": 728, "height": 90 },
+        { "id": "goog_banner_medium_rect", "name": "Medium Rectangle (300×250)", "width": 300, "height": 250 },
+        { "id": "goog_banner_half_page", "name": "Half Page (300×600)", "width": 300, "height": 600 },
+        { "id": "goog_banner_large_rect", "name": "Large Rectangle (336×280)", "width": 336, "height": 280 },
+        { "id": "goog_banner_wide_skyscraper", "name": "Wide Skyscraper (160×600)", "width": 160, "height": 600 }
       ]
     },
     "instagram": {
