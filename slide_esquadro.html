@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESQUADЯO — Slide Lápis Raro 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --vermelho-raro: #E61C00;
+      --noir-raro: #222222;
+      --nude-raro: #E5E3D9;
+      --areia-rara: #C5C0B6;
+      --azul-raro: #A2D2EB;
+      --branco: #FFFFFF;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+    }
+
+    /* 16:9 Slide Canvas */
+    .slide-canvas {
+      width: 1280px;
+      height: 720px;
+      background-color: var(--noir-raro);
+      color: var(--branco);
+      padding: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tag-lr {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--areia-rara);
+      text-transform: uppercase;
+    }
+
+    .badge-status {
+      background-color: var(--vermelho-raro);
+      color: var(--branco);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Content Layout */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Left Column - Typography & Objective */
+    .title-display {
+      font-family: var(--font-mono);
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .r-virado {
+      display: inline-block;
+      transform: scaleX(-1);
+      color: var(--vermelho-raro);
+    }
+
+    .objective-text {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--nude-raro);
+      margin-bottom: 24px;
+    }
+
+    .meta-pills {
+      display: flex;
+      gap: 12px;
+    }
+
+    .pill {
+      background-color: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--areia-rara);
+    }
+
+    /* Right Column - Feature Cards */
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-card {
+      background-color: #2A2A2A;
+      border-left: 4px solid var(--vermelho-raro);
+      border-radius: 0 16px 16px 0;
+      padding: 20px 24px;
+    }
+
+    .feature-title {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--branco);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: var(--areia-rara);
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--areia-rara);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-canvas">
+    <!-- Header -->
+    <div class="slide-header">
+      <span class="tag-lr">LÁPIS RAЯO • BRAND INTELLIGENCE</span>
+      <span class="badge-status">LANÇAMENTO: JAN / 2027</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-grid">
+      <div class="main-left">
+        <h1 class="title-display">ESQUAD<span class="r-virado">R</span>O</h1>
+        <p class="objective-text">
+          Centralização das especificações técnicas da agência no Illustrator e Photoshop. Criação guiada e automatizada de pranchetas com réguas oficiais.
+        </p>
+        <div class="meta-pills">
+          <span class="pill">Fase: Desenvolvimento & Checagem</span>
+          <span class="pill">Adobe UXP / CEP</span>
+        </div>
+      </div>
+
+      <div class="features-list">
+        <div class="feature-card">
+          <div class="feature-title">Fluxo Guiado sem Dúvidas</div>
+          <div class="feature-desc">Criação segura para quem não tem costume com o formato, dispensando checagens manuais de guias ou PDFs.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Zero Refação por Corte</div>
+          <div class="feature-desc">Safe Zones e margens de corte aplicadas automaticamente para proteger marcas e CTAs.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Geração em 1 Clique</div>
+          <div class="feature-desc">Pranchetas individuais ou múltiplas com réguas no lugar ou aplicação direta no arquivo aberto.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer">
+      <span>PROJETO 01 • AUTOMAÇÃO DE WORKFLOW</span>
+      <span>2026 • LÁPIS RAЯO</span>
+    </div>
+  </div>
+
+</body>
+</html>
