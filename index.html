@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESQUADЯO — Ecossistema de Formatos (Design & Motion)</title>
+  <title>ESQUADЯO — Ecossistema de Formatos (Design & Motion Completo)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
     :root {
       --noir-raro: #222222;
       --vermelho-raro: #E61C00;
-      --vermelho-hover: #cc1600;
       --areia-rara: #c5c0b6;
       --bg-color: #1a1a1a;
       --card-bg: #242424;
@@ -54,6 +53,8 @@
     .canvas-preview { position: relative; border: 1px solid rgba(255, 255, 255, 0.85); background-color: #121212; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); }
     
     .guide-overlay { position: absolute; border: 1px dashed var(--vermelho-raro); pointer-events: none; box-sizing: border-box; }
+    .guide-no-info { position: absolute; border: 1px dashed var(--vermelho-raro); background-color: rgba(230, 28, 0, 0.15); pointer-events: none; box-sizing: border-box; }
+    
     .dim-badge { font-family: var(--font-brand-mono); font-size: 9.5px; font-weight: 600; color: var(--areia-rara); }
     
     .btn-primary { height: 32px; background-color: var(--vermelho-raro); color: #ffffff; border: none; font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
@@ -70,9 +71,9 @@
 
   <div class="showcase-grid">
     
-    <!-- PAINEL 1: DESIGN (Illustrator / Photoshop) -->
+    <!-- PAINEL 1: DESIGN -->
     <div class="panel-wrapper">
-      <span class="panel-subtitle">1. Design (Ilustrator / Photoshop)</span>
+      <span class="panel-subtitle">1. Design (Illustrator / Photoshop)</span>
       <div class="panel-container">
         <div class="panel-header">
           <div class="panel-title">ESQUAD<span class="r-virado">R</span>O</div>
@@ -90,7 +91,7 @@
       </div>
     </div>
 
-    <!-- PAINEL 2: MOTION (After Effects / Premiere) -->
+    <!-- PAINEL 2: MOTION (AE/PR) -->
     <div class="panel-wrapper">
       <span class="panel-subtitle">2. Motion (After Effects / Premiere)</span>
       <div class="panel-container">
@@ -99,10 +100,15 @@
           <span class="badge-lr">LÁPIS RAЯO</span>
         </div>
         <div class="panel-body">
-          <div class="form-group"><label>Categoria / Mídia</label><select id="p2Select"></select></div>
-          <div class="form-group"><label>Especificação / Formato</label><select id="f2Select"></select></div>
+          <div class="form-group"><label>Categoria / Rede</label><select id="p2Select"></select></div>
+          <div class="form-group"><label>Formato de Vídeo</label><select id="f2Select"></select></div>
           <div class="preview-card">
-            <div class="preview-stage"><div id="c2Preview" class="canvas-preview"><div id="s2Overlay" class="guide-overlay"></div></div></div>
+            <div class="preview-stage">
+              <div id="c2Preview" class="canvas-preview">
+                <div id="s2Overlay" class="guide-overlay"></div>
+                <div id="noInfo2Box" class="guide-no-info"></div>
+              </div>
+            </div>
             <span id="d2Text" class="dim-badge"></span>
           </div>
           <button class="btn-primary" style="width:100%">Gerar Composição</button>
@@ -113,20 +119,31 @@
   </div>
 
   <script>
-    // Dados Painel 1 (Design)
+    // Dados de Design
     const designData = {
       "Instagram": [
         { id: "ig_square", name: "Feed Quadrado (1:1)", width: 1080, height: 1080 },
-        { id: "ig_reels", name: "Reels / Story (9:16)", width: 1080, height: 1920, safe: { top: 140, bottom: 300, left: 40, right: 40 } }
+        { id: "ig_story", name: "Story / Reels (9:16)", width: 1080, height: 1920, safe: { top: 110, bottom: 160, left: 100, right: 100 } }
       ],
       "Facebook": [
-        { id: "fb_cover", name: "Capa de Perfil", width: 820, height: 360, safe: { top: 24, bottom: 24, left: 90, right: 90 } }
+        { id: "fb_square", name: "Post Quadrado (1:1)", width: 1080, height: 1080 }
       ]
     };
 
-    // Dados Painel 2 (Motion - AE/PR)
+    // Dados de Motion (Vídeo) - Redes Sociais + TV/Streaming + OOH
     const motionData = {
-      "Streaming / TV (Spot)": [
+      "Instagram (Vídeo)": [
+        { id: "ig_reels", name: "Reels (9:16)", width: 1080, height: 1920, safe: { top: 140, bottom: 300, left: 40, right: 40 }, noInfoBox: { width: 180, height: 750, anchor: "bottom-right" } },
+        { id: "ig_story_vid", name: "Story (9:16)", width: 1080, height: 1920, safe: { top: 110, bottom: 160, left: 100, right: 100 } }
+      ],
+      "TikTok (Vídeo)": [
+        { id: "tt_video", name: "For You / Vídeo (9:16)", width: 1080, height: 1920, safe: { top: 140, bottom: 300, left: 40, right: 40 } }
+      ],
+      "YouTube (Vídeo)": [
+        { id: "yt_shorts", name: "Shorts (9:16)", width: 1080, height: 1920, safe: { top: 120, bottom: 160, left: 60, right: 60 } },
+        { id: "yt_spot", name: "Vídeo Padrão / Spot (16:9)", width: 1920, height: 1080, safe: { top: 100, bottom: 100, left: 100, right: 100 } }
+      ],
+      "TV / Streaming & Spot": [
         { id: "spot_30", name: "Spot Comercial 30s (FHD)", width: 1920, height: 1080, safe: { top: 100, bottom: 150, left: 100, right: 100 } },
         { id: "bumper_6", name: "Bumper Ad 6s (FHD)", width: 1920, height: 1080, safe: { top: 150, bottom: 150, left: 200, right: 200 } }
       ],
@@ -136,7 +153,7 @@
       ]
     };
 
-    // Setup Painel 1
+    // Render Painel 1
     const p1 = document.getElementById('p1Select');
     const f1 = document.getElementById('f1Select');
     const c1 = document.getElementById('c1Preview');
@@ -152,11 +169,9 @@
     function render1() {
       const fmt = designData[p1.value].find(x => x.id === f1.value);
       if(!fmt) return;
-      const scale = 80 / fmt.height; // max height 80px
-      const w = fmt.width * scale;
-      const h = fmt.height * scale;
-      c1.style.width = w + 'px';
-      c1.style.height = h + 'px';
+      const scale = 80 / fmt.height;
+      c1.style.width = (fmt.width * scale) + 'px';
+      c1.style.height = (fmt.height * scale) + 'px';
       d1.textContent = `${fmt.width} × ${fmt.height} px`;
       if(fmt.safe) {
         s1.style.display = 'block';
@@ -169,11 +184,12 @@
     p1.onchange = updateP1; f1.onchange = render1;
     updateP1();
 
-    // Setup Painel 2
+    // Render Painel 2
     const p2 = document.getElementById('p2Select');
     const f2 = document.getElementById('f2Select');
     const c2 = document.getElementById('c2Preview');
     const s2 = document.getElementById('s2Overlay');
+    const no2 = document.getElementById('noInfo2Box');
     const d2 = document.getElementById('d2Text');
 
     Object.keys(motionData).forEach(k => p2.add(new Option(k, k)));
@@ -186,11 +202,10 @@
       const fmt = motionData[p2.value].find(x => x.id === f2.value);
       if(!fmt) return;
       const scale = 80 / fmt.height;
-      const w = fmt.width * scale;
-      const h = fmt.height * scale;
-      c2.style.width = w + 'px';
-      c2.style.height = h + 'px';
+      c2.style.width = (fmt.width * scale) + 'px';
+      c2.style.height = (fmt.height * scale) + 'px';
       d2.textContent = `${fmt.width} × ${fmt.height} px (Motion)`;
+      
       if(fmt.safe) {
         s2.style.display = 'block';
         s2.style.top = (fmt.safe.top * scale) + 'px';
@@ -198,6 +213,14 @@
         s2.style.left = (fmt.safe.left * scale) + 'px';
         s2.style.right = (fmt.safe.right * scale) + 'px';
       } else { s2.style.display = 'none'; }
+
+      if(fmt.noInfoBox) {
+        no2.style.display = 'block';
+        no2.style.width = (fmt.noInfoBox.width * scale) + 'px';
+        no2.style.height = (fmt.noInfoBox.height * scale) + 'px';
+        no2.style.bottom = ((fmt.safe ? fmt.safe.bottom : 0) * scale) + 'px';
+        no2.style.right = ((fmt.safe ? fmt.safe.right : 0) * scale) + 'px';
+      } else { no2.style.display = 'none'; }
     }
     p2.onchange = updateP2; f2.onchange = render2;
     updateP2();
