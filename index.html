@@ -2,98 +2,167 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ESQUADЯO — Plugin Lápis Raro</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESQUADRO — Plugin Lápis Raro (UXP v3.9 Final)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --noir-raro: #222222;
+      --vermelho-raro: #E61C00;
+      --vermelho-hover: #cc1600;
+      --areia-rara: #c5c0b6;
+      --bg-color: #1a1a1a;
+      --card-bg: #242424;
+      --input-bg: #141414;
+      --border-color: #333333;
+      --text-main: #f5f5f5;
+      --text-muted: #9e9e9e;
+      --guide-safe: #E61C00; 
+      --guide-crop: #a2d2eb; 
+      --font-brand-sans: 'Milo', 'IBM Plex Sans', -apple-system, sans-serif;
+      --font-brand-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-brand-sans); -webkit-font-smoothing: antialiased; }
+
+    body { background-color: #0d0d0d; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+
+    .panel-container { width: 300px; background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7); overflow: hidden; }
+
+    .panel-header { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; background-color: #121212; border-bottom: 1px solid var(--border-color); }
+    .panel-title { font-family: var(--font-brand-mono); font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
+    .r-virado { display: inline-block; transform: scaleX(-1); font-weight: 700; color: inherit; margin: 0 -1px; }
+    .badge-lr { background-color: var(--vermelho-raro); color: #ffffff; font-family: var(--font-brand-mono); font-size: 8px; padding: 2px 5px; border-radius: 3px; font-weight: 700; letter-spacing: 0.5px; }
+
+    .panel-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    label { font-family: var(--font-brand-mono); font-size: 9px; font-weight: 600; color: var(--areia-rara); text-transform: uppercase; letter-spacing: 0.6px; }
+
+    select { -webkit-appearance: none; -moz-appearance: none; appearance: none; height: 28px; font-family: var(--font-brand-sans); background-color: var(--input-bg); background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'><path fill='%20c5c0b6' d='M0 0l4 5 4-5z'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; color: var(--text-main); border: 1px solid var(--border-color); border-radius: 4px; padding: 0 22px 0 8px; font-size: 11px; outline: none; cursor: pointer; }
+    select:focus { border-color: var(--vermelho-raro); }
+
+    .stepper-container { display: flex; align-items: center; background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 4px; height: 28px; overflow: hidden; width: 100%; }
+    .stepper-btn { width: 28px; height: 100%; background: transparent; border: none; color: var(--text-main); font-size: 13px; font-weight: 600; cursor: pointer; }
+    .stepper-input { flex: 1; background: transparent; border: none; font-family: var(--font-brand-mono); color: var(--text-main); font-size: 11px; font-weight: 600; text-align: center; outline: none; -webkit-appearance: none; -moz-appearance: textfield; appearance: textfield; }
+
+    .preview-card { background-color: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 5px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .preview-stage { width: 100%; height: 115px; display: flex; justify-content: center; align-items: center; position: relative; }
+    .canvas-preview { position: relative; border: 1px solid rgba(255, 255, 255, 0.85); background-color: #121212; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); }
+    
+    .guide-overlay { position: absolute; border: 1px dashed var(--vermelho-raro); pointer-events: none; }
+    .guide-no-info { position: absolute; border: 1px dashed var(--vermelho-raro); background-color: rgba(230, 28, 0, 0.15); pointer-events: none; }
+    .guide-crop-overlay { position: absolute; border: 1px dashed var(--azul-raro); pointer-events: none; }
+    
+    .dim-badge { font-family: var(--font-brand-mono); font-size: 9.5px; font-weight: 600; color: var(--areia-rara); }
+    .btn-primary { height: 32px; background-color: var(--vermelho-raro); color: #ffffff; border: none; font-family: var(--font-brand-sans); font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
+    .btn-secondary { height: 28px; background-color: transparent; color: var(--areia-rara); border: 1px solid var(--border-color); font-family: var(--font-brand-sans); font-size: 10px; font-weight: 500; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
+    .button-group { display: flex; flex-direction: column; gap: 6px; }
+  </style>
 </head>
 <body>
-
   <div class="panel-container">
-    
-    <!-- Header -->
     <div class="panel-header">
-      <div class="brand-logo">
-        <span class="panel-title">ESQUADЯO</span>
-      </div>
+      <div class="brand-logo"><span class="panel-title">ESQUADЯO</span></div>
       <span class="badge-lr">LÁPIS RAЯO</span>
     </div>
-
     <div class="panel-body">
-      
-      <!-- 1. Plataforma -->
       <div class="form-group">
-        <label for="platformSelect">PLATAFORMA</label>
-        <select id="platformSelect">
-          <option value="facebook">Facebook</option>
-          <option value="instagram" selected>Instagram</option>
-          <option value="linkedin">LinkedIn</option>
-          <option value="tiktok">TikTok</option>
-          <option value="whatsapp">WhatsApp</option>
-          <option value="twitter">X (Twitter)</option>
-          <option value="youtube">YouTube</option>
-        </select>
+        <label>PLATAFORMA</label>
+        <select id="platformSelect"></select>
       </div>
-
-      <!-- 2. Formato de Mídia -->
       <div class="form-group">
-        <label for="formatSelect">FORMATO DE MÍDIA</label>
-        <select id="formatSelect">
-          <!-- Preenchido via JS -->
-        </select>
+        <label>FORMATO DE MÍDIA</label>
+        <select id="formatSelect"></select>
       </div>
-
-      <!-- 3. Quantidade de Pranchetas -->
       <div class="form-group">
-        <label for="qtdInput">QUANTIDADE DE PRANCHETAS</label>
+        <label>QUANTIDADE DE PRANCHETAS</label>
         <div class="stepper-container">
           <button type="button" class="stepper-btn" id="btnMinus">−</button>
-          <input type="number" id="qtdInput" class="stepper-input" value="1" min="1" max="20">
+          <input type="number" id="qtdInput" class="stepper-input" value="1">
           <button type="button" class="stepper-btn" id="btnPlus">+</button>
         </div>
       </div>
-
-      <!-- Card de Preview -->
       <div class="preview-card">
-        <div class="preview-stage">
-          <div id="canvasPreview" class="canvas-preview">
-            <div id="safeOverlay" class="guide-overlay"></div>
-            <div id="noInfoBox" class="guide-no-info"></div>
-            <div id="cropOverlay" class="guide-crop-overlay"></div>
-          </div>
-        </div>
-
-        <div class="preview-footer">
-          <span id="dimText" class="dim-badge">320 × 320 px</span>
-          <span id="cropNoteText" class="crop-note" style="display:none;">(Crop Feed na 1ª prancheta)</span>
-
-          <div class="legend-row">
-            <div class="legend-item" id="legendSafeItem"><div class="dot dot-safe"></div><span>Safe Zone</span></div>
-            <div class="legend-item" id="legendCropItem"><div class="dot dot-crop"></div><span>Linhas de Corte</span></div>
-          </div>
-        </div>
+        <div class="preview-stage"><div id="canvasPreview" class="canvas-preview"></div></div>
+        <span id="dimText" class="dim-badge"></span>
       </div>
-
-      <!-- Grupo de Ações -->
       <div class="button-group">
-        <button class="btn-primary" id="btnCreate">
-          <span id="btnActionLabel">Criar Prancheta</span>
-        </button>
-        <button class="btn-secondary" id="btnGuidesOnly">
-          Aplicar Apenas Guias
-        </button>
+        <button class="btn-primary" id="btnCreate">Criar Pranchetas</button>
+        <button class="btn-secondary" id="btnGuidesOnly">Aplicar Apenas Guias</button>
       </div>
-
-      <div id="toast" class="toast-msg">
-        ✅ Ação realizada com sucesso!
-      </div>
-
     </div>
-
-    <div class="panel-footer">
-      BRAND INTELLIGENCE • 2026
-    </div>
-
   </div>
+  <script>
+    // Carrega o JSON master
+    const masterPlatforms = {
+      "Facebook": [
+        { id: "fb_avatar", name: "Avatar / Perfil (1:1)", width: 320, height: 320 },
+        { id: "fb_square", name: "Post Quadrado (1:1)", width: 1080, height: 1080 },
+        { id: "fb_portrait", name: "Post Retrato (4:5)", width: 1080, height: 1359 },
+        { id: "fb_carousel", name: "Carrossel (1:1)", width: 1200, height: 1200 },
+        { id: "fb_landscape", name: "Post Paisagem (16:9)", width: 1080, height: 566 },
+        { id: "fb_link", name: "Anúncio com Link (1,91:1)", width: 1200, height: 630 }
+      ],
+      "Google Ads": [
+        { id: "goog_leader", name: "Leaderboard (728×90)", width: 728, height: 90 },
+        { id: "goog_rect", name: "Medium Rectangle (300×250)", width: 300, height: 250 },
+        { id: "goog_half", name: "Half Page (300×600)", width: 300, height: 600 }
+      ],
+      "iFood": [
+        { id: "ifood_banner", name: "Banner (900×420)", width: 900, height: 420 }
+      ],
+      "Instagram": [
+        { id: "ig_avatar", name: "Avatar / Destaques (1:1)", width: 320, height: 320 },
+        { id: "ig_square", name: "Feed Quadrado (1:1)", width: 1080, height: 1080 },
+        { id: "ig_reels", name: "Reels (9:16)", width: 1080, height: 1920 }
+      ],
+      "LinkedIn": [
+        { id: "lkd_square", name: "Post Quadrado (1:1)", width: 1080, height: 1080 },
+        { id: "lkd_landscape", name: "Post Paisagem (1,91:1)", width: 1200, height: 627 }
+      ],
+      "TikTok": [
+        { id: "tt_foryou", name: "For You / Vídeo (9:16)", width: 1080, height: 1920 },
+        { id: "tt_thumb", name: "Thumb Capa (4:5)", width: 1080, height: 1920 }
+      ],
+      "Uber": [
+        { id: "uber_journey", name: "Journey Ad (16:9)", width: 1280, height: 720 },
+        { id: "uber_dispatch", name: "Dispatch (1:1)", width: 420, height: 420 }
+      ],
+      "WhatsApp": [
+        { id: "wa_status", name: "Status (9:16)", width: 1080, height: 1920 }
+      ],
+      "X (Twitter)": [
+        { id: "tw_card", name: "Card / Link (2:1)", width: 800, height: 418 }
+      ],
+      "YouTube": [
+        { id: "yt_thumb", name: "Thumbnail (16:9)", width: 1280, height: 720 },
+        { id: "yt_shorts", name: "Shorts (9:16)", width: 1080, height: 1920 }
+      ]
+    };
 
-  <script src="index.js"></script>
+    const platformSelect = document.getElementById('platformSelect');
+    const formatSelect = document.getElementById('formatSelect');
+    
+    // Preencher plataformas ordenadas alfabeticamente
+    Object.keys(masterPlatforms).sort().forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p; opt.textContent = p;
+      platformSelect.appendChild(opt);
+    });
+
+    function updateFormats() {
+      formatSelect.innerHTML = '';
+      const p = platformSelect.value;
+      masterPlatforms[p].forEach(f => {
+        const opt = document.createElement('option');
+        opt.value = f.id; opt.textContent = f.name;
+        formatSelect.appendChild(opt);
+      });
+    }
+
+    platformSelect.onchange = updateFormats;
+    populateFormats();
+  </script>
 </body>
 </html>
