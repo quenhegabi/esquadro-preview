@@ -35,7 +35,7 @@
       height: 720px;
       background-color: var(--noir-raro);
       color: var(--branco);
-      padding: 64px;
+      padding: 56px 64px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -54,7 +54,7 @@
 
     .tag-lr {
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.06em;
       color: var(--areia-rara);
@@ -76,78 +76,104 @@
     /* Content Layout */
     .content-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
       align-items: center;
     }
 
-    /* Left Column - Typography & Objective */
+    /* Title & Alignment Fix */
     .title-display {
       font-family: var(--font-mono);
-      font-size: 56px;
+      font-size: 52px;
       font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 20px;
+      letter-spacing: 0;
+      line-height: 1;
+      margin-bottom: 18px;
+      color: var(--branco);
+      display: flex;
+      align-items: baseline;
     }
 
     .r-virado {
       display: inline-block;
       transform: scaleX(-1);
-      color: var(--vermelho-raro);
+      color: var(--branco);
+      margin: 0 1px;
     }
 
     .objective-text {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
       line-height: 1.5;
       color: var(--nude-raro);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .meta-pills {
       display: flex;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .pill {
       background-color: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 999px;
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--areia-rara);
     }
 
-    /* Right Column - Feature Cards */
-    .features-list {
+    /* Right Column - Demo GIF & Features */
+    .right-col {
       display: flex;
       flex-direction: column;
       gap: 16px;
+      align-items: center;
+    }
+
+    .demo-gif-container {
+      width: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .demo-gif-container img {
+      width: 100%;
+      display: block;
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
     }
 
     .feature-card {
       background-color: #2A2A2A;
-      border-left: 4px solid var(--vermelho-raro);
-      border-radius: 0 16px 16px 0;
-      padding: 20px 24px;
+      border-left: 3px solid var(--vermelho-raro);
+      border-radius: 0 12px 12px 0;
+      padding: 12px 16px;
     }
 
     .feature-title {
       font-family: var(--font-mono);
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--branco);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
 
     .feature-desc {
-      font-size: 15px;
+      font-size: 13px;
       color: var(--areia-rara);
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     /* Footer */
@@ -155,9 +181,9 @@
       display: flex;
       justify-content: space-between;
       border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 20px;
+      padding-top: 16px;
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--areia-rara);
     }
   </style>
@@ -176,26 +202,28 @@
       <div class="main-left">
         <h1 class="title-display">ESQUAD<span class="r-virado">R</span>O</h1>
         <p class="objective-text">
-          Centralização das especificações técnicas da agência no Illustrator e Photoshop. Criação guiada e automatizada de pranchetas com réguas oficiais.
+          Centralização das especificações técnicas no Illustrator, Photoshop, After Effects e Premiere. Criação guiada e automatizada de pranchetas e composições sem checagens manuais.
         </p>
         <div class="meta-pills">
           <span class="pill">Fase: Desenvolvimento & Checagem</span>
-          <span class="pill">Adobe UXP / CEP</span>
+          <span class="pill">Illustrator • Photoshop</span>
+          <span class="pill">After Effects • Premiere</span>
         </div>
       </div>
 
-      <div class="features-list">
-        <div class="feature-card">
-          <div class="feature-title">Fluxo Guiado sem Dúvidas</div>
-          <div class="feature-desc">Criação segura para quem não tem costume com o formato, dispensando checagens manuais de guias ou PDFs.</div>
+      <div class="right-col">
+        <div class="demo-gif-container">
+          <img src="demo.gif" alt="Demonstração do ESQUADЯO">
         </div>
-        <div class="feature-card">
-          <div class="feature-title">Zero Refação por Corte</div>
-          <div class="feature-desc">Safe Zones e margens de corte aplicadas automaticamente para proteger marcas e CTAs.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-title">Geração em 1 Clique</div>
-          <div class="feature-desc">Pranchetas individuais ou múltiplas com réguas no lugar ou aplicação direta no arquivo aberto.</div>
+        <div class="features-list">
+          <div class="feature-card">
+            <div class="feature-title">Fluxo Guiado sem Dúvidas</div>
+            <div class="feature-desc">Criatividade direcionada sem precisar consultar guias para cada formato.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Zero Refação por Corte</div>
+            <div class="feature-desc">Safe Zones e margens aplicadas automaticamente protegendo a marca.</div>
+          </div>
         </div>
       </div>
     </div>
